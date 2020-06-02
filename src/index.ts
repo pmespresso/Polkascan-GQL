@@ -2,7 +2,7 @@
 
 import { ApolloServer } from 'apollo-server';
 
-import { jsSchema, typeDefs } from './schema';
+import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
 import AccountAPI from './datasources/account';
@@ -19,11 +19,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources,
   introspection: true,
-  playground: true,
-  // engine: {
-  //   apiKey: process.env.ENGINE_API_KEY,
-  //   ...internalEngineDemo,
-  // },
+  playground: true
 });
 
 // Start our server if we're not in a test env.
