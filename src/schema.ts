@@ -25,19 +25,19 @@ export const typeDefs = gql`
       # balance_history: [BalanceHistory]
       # balance_reserved: Int
       # balance_total: Int | String
-      # count_reaped: Int
-      # created_at_block: Int
-      # hash_blake2b: String
-      # id: String
-      # identity_display: String
-      # identity_email: String
-      # identity_judgement_bad: Int
-      # identity_judgement_good: Int
-      # identity_legal: String
-      # identity_riot: String
-      # identity_twitter: String
-      # identity_web: String
-      # index_address: String | Int
+      count_reaped: Int
+      created_at_block: Int
+      hash_blake2b: String
+      id: String
+      identity_display: String
+      identity_email: String
+      identity_judgement_bad: Int
+      identity_judgement_good: Int
+      identity_legal: String
+      identity_riot: String
+      identity_twitter: String
+      identity_web: String
+      index_address: Int
       is_contract: Boolean
       is_council_member: Boolean
       is_nominator: Boolean
@@ -47,10 +47,10 @@ export const typeDefs = gql`
       is_tech_comm_member: Boolean
       is_treasury: Boolean
       is_validator: Boolean
-      # nonce: Int
-      # parent_identity: String
-      # subidentity_display: String
-      # updated_at_block: Int
+      nonce: Int
+      parent_identity: String
+      subidentity_display: String
+      updated_at_block: Int
       was_council_member: Boolean
       was_nominator: Boolean
       was_registrar: Boolean

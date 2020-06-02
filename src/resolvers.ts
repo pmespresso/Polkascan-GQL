@@ -7,7 +7,7 @@ export const resolvers = {
       console.log('haioknflanksdf')
       const allAccounts = await dataSources.accountAPI.getAllAccounts();
       // we want these in reverse chronological order
-      allAccounts.reverse();
+      // allAccounts.reverse();
 
       const accounts = paginateResults({
         after,
