@@ -1,15 +1,13 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 import { ApolloServer } from 'apollo-server';
 
-import { jsSchema, typeDefs } from './schema';
+import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
 import AccountAPI from './datasources/account';
 
 // const internalEngineDemo = require('./engine-demo');
-
-
 // set up any dataSources our resolvers need
 const dataSources = () => ({
   accountAPI: new AccountAPI(),
@@ -18,15 +16,10 @@ const dataSources = () => ({
 // Set up Apollo Server
 const server = new ApolloServer({
   typeDefs,
-  schema: jsSchema,
   resolvers,
   dataSources,
   introspection: true,
-  playground: true,
-  // engine: {
-  //   apiKey: process.env.ENGINE_API_KEY,
-  //   ...internalEngineDemo,
-  // },
+  playground: true
 });
 
 // Start our server if we're not in a test env.

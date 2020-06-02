@@ -1,6 +1,4 @@
 import { gql } from 'apollo-server';
-import { makeExecutableSchema } from 'graphql-tools';
-import GraphQLJSON from 'graphql-type-json';
 
 export const typeDefs = gql`
   scalar JSON
@@ -23,44 +21,44 @@ export const typeDefs = gql`
   type AccountAttributes {
       account_info: JSON
       address: String
-      balance_free: Int
-      # balance_history: [BalanceHistory]
-      # balance_reserved: Int
-      # balance_total: Int | String
-      # count_reaped: Int
-      # created_at_block: Int
-      # has_identity: Boolean
-      # has_subidentity: Boolean
-      # hash_blake2b: String
-      # id: String
-      # identity_display: String
-      # identity_email: String
-      # identity_judgement_bad: Int
-      # identity_judgement_good: Int
-      # identity_legal: String
-      # identity_riot: String
-      # identity_twitter: String
-      # identity_web: String
-      # index_address: String | Int
-      # is_contract: Boolean
-      # is_council_member: Boolean
-      # is_nominator: Boolean
-      # is_reaped: Boolean
-      # is_registrar: Boolean
-      # is_sudo: Boolean
-      # is_tech_comm_member: Boolean
-      # is_treasury: Boolean
-      # is_validator: Boolean
-      # nonce: Int
-      # parent_identity: String
-      # subidentity_display: String
-      # updated_at_block: Int
-      # was_council_member: Boolean
-      # was_nominator: Boolean
-      # was_registrar: Boolean
-      # was_sudo: Boolean
-      # was_tech_comm_member: Boolean
-      # was_validator: Boolean
+      has_identity: Boolean
+      has_subidentity: Boolean
+      balance_free: String
+      # balance_history: [[String]]
+      balance_reserved: String
+      balance_total: String
+      count_reaped: Int
+      created_at_block: Int
+      hash_blake2b: String
+      id: String
+      identity_display: String
+      identity_email: String
+      identity_judgement_bad: Int
+      identity_judgement_good: Int
+      identity_legal: String
+      identity_riot: String
+      identity_twitter: String
+      identity_web: String
+      index_address: Int
+      is_contract: Boolean
+      is_council_member: Boolean
+      is_nominator: Boolean
+      is_reaped: Boolean
+      is_registrar: Boolean
+      is_sudo: Boolean
+      is_tech_comm_member: Boolean
+      is_treasury: Boolean
+      is_validator: Boolean
+      nonce: Int
+      parent_identity: String
+      subidentity_display: String
+      updated_at_block: Int
+      was_council_member: Boolean
+      was_nominator: Boolean
+      was_registrar: Boolean
+      was_sudo: Boolean
+      was_tech_comm_member: Boolean
+      was_validator: Boolean
   }
 
   type Account {
@@ -72,12 +70,6 @@ export const typeDefs = gql`
   type AccountsConnection {
     cursor: String!
     hasMore: Boolean!
-    accounts: [Account]
+    accounts: [Account]!
   }
 `;
-
-const resolveFunctions = {
-  JSON: GraphQLJSON
-};
-
-export const jsSchema = makeExecutableSchema({ typeDefs, resolvers: resolveFunctions });
