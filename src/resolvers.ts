@@ -6,8 +6,6 @@ export const resolvers = {
   Query: {
     accounts: async (_, { pageSize = 20, after }, { dataSources }) => {
       const allAccounts = await dataSources.accountAPI.getAllAccounts();
-      // we want these in reverse chronological order
-      // allAccounts.reverse();
 
       const accounts = paginateResults({
         after,
@@ -28,6 +26,9 @@ export const resolvers = {
     },
     account: (_, { account_id }, { dataSources }) => {
       return dataSources.accountAPI.getAccount({ accountId: account_id });
+    },
+    accountsById: (_, { account_ids }, { dataSources }) => {
+      return dataSources.accountAPI.getAccounts({ accountIds: account_ids });
     }
   },
   JSON: GraphQLJSON
