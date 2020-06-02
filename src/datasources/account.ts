@@ -99,8 +99,9 @@ class AccountAPI extends RESTDataSource {
   }
 
   async getAccount({ accountId }) {
-    const res = await this.get('account', { account_id: accountId });
-    return this.accountReducer(res[0]);
+    const res = await this.get(`account/${accountId}`);
+
+    return this.accountReducer(res.data);
   }
 
   async getAccounts({ accountIds }) {

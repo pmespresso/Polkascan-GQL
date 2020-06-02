@@ -26,8 +26,9 @@ export const resolvers = {
           : false,
       };
     },
-    account: (_, { id }, { dataSources }) =>
-      dataSources.accountAPI.getAccount({ account_id: id }),
+    account: (_, { account_id }, { dataSources }) => {
+      return dataSources.accountAPI.getAccount({ accountId: account_id });
+    }
   },
   JSON: GraphQLJSON
 };
