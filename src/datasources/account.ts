@@ -64,20 +64,20 @@ class AccountAPI extends RESTDataSource {
   }
 
   // leaving this inside the class to make the class easier to test
-  accountReducer(account): Account {
+  accountReducer(account) {
     return {
       id: account.id,
-      type: "account",
-      attributes: {
-       ...account.attributes
-      }
+      type: account.type,
+      attributes: account.attributes
     }
   }
 
   async getAllAccounts() {
-    const response = await this.get('accounts');
-    return Array.isArray(response)
-      ? response.map(account => this.accountReducer(account))
+    const response = await this.get('account');
+    console.log('response -> ', response);
+
+    return Array.isArray(response.data)
+      ? response.data.map(account => this.accountReducer(account))
       : [];
   }
 

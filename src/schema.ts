@@ -21,9 +21,9 @@ export const typeDefs = gql`
   }
 
   type AccountAttributes {
-      account_info: JSON
+      # account_info: JSON
       address: String
-      balance_free: Int
+      # balance_free: Int
       # balance_history: [BalanceHistory]
       # balance_reserved: Int
       # balance_total: Int | String
@@ -70,8 +70,8 @@ export const typeDefs = gql`
   }
 
   type AccountsConnection {
-    cursor: String!
-    hasMore: Boolean!
+    cursor: String
+    hasMore: Boolean
     accounts: [Account]
   }
 `;

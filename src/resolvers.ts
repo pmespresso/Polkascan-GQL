@@ -3,6 +3,8 @@ import { paginateResults } from './utils';
 export const resolvers = {
   Query: {
     accounts: async (_, { pageSize = 20, after }, { dataSources }) => {
+
+      console.log('haioknflanksdf')
       const allAccounts = await dataSources.accountAPI.getAllAccounts();
       // we want these in reverse chronological order
       allAccounts.reverse();
