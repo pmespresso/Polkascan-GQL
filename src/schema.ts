@@ -16,6 +16,7 @@ export const typeDefs = gql`
     ): AccountsConnection!
     # account_id is the public key ss58 encoded to the appropriate network
     account(account_id: String!): Account
+    accountsById(account_ids: [String]!): [Account]
   }
 
   type AccountAttributes {
