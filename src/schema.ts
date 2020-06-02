@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
+  scalar JSON
+
   type Query {
     accounts(
       """
@@ -17,12 +19,12 @@ export const typeDefs = gql`
   }
 
   type AccountAttributes {
-      # account_info: JSON
+      account_info: JSON
       address: String
       has_identity: Boolean
       has_subidentity: Boolean
       balance_free: String
-      # balance_history: [BalanceHistory]
+      # balance_history: [[String]]
       balance_reserved: String
       balance_total: String
       count_reaped: Int
