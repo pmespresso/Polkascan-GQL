@@ -1,4 +1,5 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
+import BN from 'bn.js';
 
 type AnyJSON = {} | object;
 
@@ -65,16 +66,32 @@ class AccountAPI extends RESTDataSource {
 
   // leaving this inside the class to make the class easier to test
   accountReducer(account) {
+
+    /**
+     * Main thing: the balances and other fields that exceed 53 bit represenntation should be converted to BigNumber and stringify for the Graphql layer.
+     * Unfortunately with JS the recommended approach is to serialize as string and store that.
+     * See also: https://github.com/graphql/graphql-js/issues/292#issuecomment-186702912
+     * 
+     * # balance_free
+     * # balance_reserved
+     * # balance_total
+     * # balance_history.data
+     */
+
     return {
       id: account.id,
       type: account.type,
-      attributes: account.attributes
+      attributes: {
+        balance_free: new BN(String(account.attributes.balance_free)).toString(),
+        balance_reserved: new BN(String(account.attributes.balance_reserved)).toString(),
+        balance_total: new BN(String(account.attributes.balance_total)).toString(),
+        ...account.attributes
+      }
     }
   }
 
   async getAllAccounts() {
     const response = await this.get('account');
-    console.log('response -> ', response);
 
     return Array.isArray(response.data)
       ? response.data.map(account => this.accountReducer(account))

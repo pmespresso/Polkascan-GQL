@@ -21,10 +21,10 @@ export const typeDefs = gql`
       address: String
       has_identity: Boolean
       has_subidentity: Boolean
-      # balance_free: Int
+      balance_free: String
       # balance_history: [BalanceHistory]
-      # balance_reserved: Int
-      # balance_total: Int | String
+      balance_reserved: String
+      balance_total: String
       count_reaped: Int
       created_at_block: Int
       hash_blake2b: String
