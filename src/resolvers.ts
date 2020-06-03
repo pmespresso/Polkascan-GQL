@@ -29,6 +29,26 @@ export const resolvers = {
     },
     accountsById: (_, { account_ids }, { dataSources }) => {
       return dataSources.accountAPI.getAccounts({ accountIds: account_ids });
+    },
+    sessions: async (_, { pageSize = 20, after }, { dataSources }) => {
+      let allSessions = dataSources.sessionAPI.getAllSessions();
+
+      const sessions = paginateResults({
+        after,
+        pageSize,
+        results: allSessions,
+      });
+
+      return {
+        sessions,
+        cursor: sessions.length ? sessions[sessions.length - 1].cursor : null,
+        // if the cursor of the end of the paginated results is the same as the
+        // last item in _all_ results, then there are no more results after this
+        hasMore: sessions.length
+          ? sessions[sessions.length - 1].cursor !==
+            allSessions[allSessions.length - 1].cursor
+          : false,
+      };
     }
   },
   JSON: GraphQLJSON
