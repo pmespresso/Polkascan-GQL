@@ -6,11 +6,13 @@ import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
 import AccountAPI from './datasources/account';
+import SessionAPI from './datasources/session';
 
 // const internalEngineDemo = require('./engine-demo');
 // set up any dataSources our resolvers need
 const dataSources = () => ({
   accountAPI: new AccountAPI(),
+  sessionAPI: new SessionAPI()
 });
 
 // Set up Apollo Server

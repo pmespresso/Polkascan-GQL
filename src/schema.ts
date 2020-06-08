@@ -17,6 +17,12 @@ export const typeDefs = gql`
     # account_id is the public key ss58 encoded to the appropriate network
     account(account_id: String!): Account
     accountsById(account_ids: [String]!): [Account]
+    sessions(
+      pageSize: Int
+      after: String
+    ): SessionsConnection!
+    session(session_id: Int!): Session
+    sessionsById(session_ids: [Int]!): [Session]
   }
 
   type AccountAttributes {
@@ -72,5 +78,31 @@ export const typeDefs = gql`
     cursor: String!
     hasMore: Boolean!
     accounts: [Account]!
+  }
+
+  type SessionAttributes {
+    id: Int
+    start_at_block: Int
+    era: Int
+    era_idx: Int
+    created_at_block: Int
+    created_at_extrinsic: Int
+    created_at_event: Int
+    count_validators: Int
+    count_nominators: Int
+    end_at_block: Int
+    count_blocks: Int
+  }
+
+  type Session {
+    attributes: SessionAttributes
+    id: String
+    type: String
+  }
+
+  type SessionsConnection {
+    cursor: String!
+    hasMore: Boolean!
+    sessions: [Session]!
   }
 `;
