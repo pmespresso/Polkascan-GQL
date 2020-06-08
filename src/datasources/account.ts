@@ -109,6 +109,15 @@ class AccountAPI extends RESTDataSource {
       accountIds.map(accountId => this.getAccount({ accountId }))
     );
   }
+
+  //https://api-01.polkascan.io/kusama/api/v1/account?filter[is_nominator]=1&page[size]=25
+  async getAllCurrentNominators() {
+    const response = await this.get(`account?filter[is_nominator]=1`);
+
+    return Array.isArray(response.data)
+      ? response.data.map(account => this.accountReducer(account))
+      : [];
+  }
 }
 
 export default AccountAPI;

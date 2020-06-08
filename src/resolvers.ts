@@ -30,6 +30,28 @@ export const resolvers = {
     accountsById: (_, { account_ids }, { dataSources }) => {
       return dataSources.accountAPI.getAccounts({ accountIds: account_ids });
     },
+    nominators: async (_, { pageSize = 20, after }, { dataSources }) => {
+      let allNominatorAccounts = await dataSources.accountAPI.getAllCurrentNominators();
+
+      const nominators = paginateResults({
+        after,
+        pageSize,
+        results: allNominatorAccounts,
+      });
+
+      return {
+        accounts: nominators,
+        cursor: nominators.length ? nominators[nominators.length - 1].cursor : null,
+        // if the cursor of the end of the paginated results is the same as the
+        // last item in _all_ results, then there are no more results after this
+        // if the cursor of the end of the paginated results is the same as the
+        // last item in _all_ results, then there are no more results after this
+        hasMore: nominators.length
+          ? nominators[nominators.length - 1].cursor !==
+            allNominatorAccounts[allNominatorAccounts.length - 1].cursor
+          : false,
+      };
+    },
     sessions: async (_, { pageSize = 20, after }, { dataSources }) => {
       let allSessions = await dataSources.sessionAPI.getAllSessions();
 
