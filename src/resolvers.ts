@@ -49,7 +49,13 @@ export const resolvers = {
             allSessions[allSessions.length - 1].cursor
           : false,
       };
-    }
+    },
+    session: (_, { session_id }, { dataSources }) => {
+      return dataSources.sessionAPI.getSession({ sessionId: session_id });
+    },
+    sessionsById: (_, { session_ids }, { dataSources }) => {
+      return dataSources.sessionAPI.getSessions({ sessionIds: session_ids });
+    },
   },
   JSON: GraphQLJSON
 };

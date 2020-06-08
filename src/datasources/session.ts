@@ -24,17 +24,17 @@ class SessionAPI extends RESTDataSource {
       : [];
   }
 
-  // async getAccount({ accountId }) {
-  //   const res = await this.get(`account/${accountId}`);
+  async getSession({ sessionId }) {
+    const res = await this.get(`session/${sessionId}`);
 
-  //   return this.accountReducer(res.data);
-  // }
+    return this.sessionReducer(res.data);
+  }
 
-  // async getAccounts({ accountIds }) {
-  //   return Promise.all(
-  //     accountIds.map(accountId => this.getAccount({ accountId }))
-  //   );
-  // }
+  async getSessions({ sessionIds }) {
+    return Promise.all(
+      sessionIds.map(sessionId => this.getSession({ sessionId }))
+    );
+  }
 }
 
 export default SessionAPI;

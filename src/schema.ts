@@ -21,6 +21,8 @@ export const typeDefs = gql`
       pageSize: Int
       after: String
     ): SessionsConnection!
+    session(session_id: Int!): Session
+    sessionsById(session_ids: [Int]!): [Session]
   }
 
   type AccountAttributes {
