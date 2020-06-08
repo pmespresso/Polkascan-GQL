@@ -1,0 +1,4 @@
+src/datasources/__tests__
+src/__tests__
+build
+*.config.js

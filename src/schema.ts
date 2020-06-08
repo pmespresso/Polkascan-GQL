@@ -17,6 +17,10 @@ export const typeDefs = gql`
     # account_id is the public key ss58 encoded to the appropriate network
     account(account_id: String!): Account
     accountsById(account_ids: [String]!): [Account]
+    nominators(
+      pageSize: Int
+      after: String
+    ): AccountsConnection! ## just filtered accounts by their role
     sessions(
       pageSize: Int
       after: String
@@ -77,7 +81,7 @@ export const typeDefs = gql`
   type AccountsConnection {
     cursor: String!
     hasMore: Boolean!
-    accounts: [Account]!
+    accounts: [Account]
   }
 
   type SessionAttributes {
@@ -101,7 +105,7 @@ export const typeDefs = gql`
   }
 
   type SessionsConnection {
-    cursor: String!
+    cursor: String
     hasMore: Boolean!
     sessions: [Session]!
   }

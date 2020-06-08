@@ -57,7 +57,7 @@ local_settings.py
 db.sqlite3
 
 # Node stuff
-**/node_modules/
+node_modules/
 
 # Flask stuff:
 instance/
