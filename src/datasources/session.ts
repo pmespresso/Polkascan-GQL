@@ -1,25 +1,26 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-import BN from 'bn.js';
-
 
 class SessionAPI extends RESTDataSource {
   baseURL: string;
 
   constructor() {
     super();
-    this.baseURL = 'https://api-01.polkascan.io/kusama/api/v1/';
+    this.baseURL = 'https://api-01.polkascan.io/kusama/api/v1/session';
   }
 
-  sessionReducer(account) {
-
-
+  sessionReducer(session) {
+    return {
+      attributes: session.attributes,
+      id: session.id,
+      type: 'session',
+    }
   }
 
   async getAllSessions() {
     const response = await this.get('session');
 
     return Array.isArray(response.data)
-      ? response.data.map(account => this.sessionReducer(account))
+      ? response.data.map(session => this.sessionReducer(session))
       : [];
   }
 

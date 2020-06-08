@@ -31,7 +31,7 @@ export const resolvers = {
       return dataSources.accountAPI.getAccounts({ accountIds: account_ids });
     },
     sessions: async (_, { pageSize = 20, after }, { dataSources }) => {
-      let allSessions = dataSources.sessionAPI.getAllSessions();
+      let allSessions = await dataSources.sessionAPI.getAllSessions();
 
       const sessions = paginateResults({
         after,
