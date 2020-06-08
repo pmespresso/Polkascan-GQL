@@ -31,7 +31,7 @@ export const resolvers = {
       return dataSources.accountAPI.getAccounts({ accountIds: account_ids });
     },
     nominators: async (_, { pageSize = 20, after }, { dataSources }) => {
-      let allNominatorAccounts = await dataSources.accountAPI.getAllCurrentNominators();
+      const allNominatorAccounts = await dataSources.accountAPI.getAllCurrentNominators();
 
       const nominators = paginateResults({
         after,
@@ -53,7 +53,7 @@ export const resolvers = {
       };
     },
     sessions: async (_, { pageSize = 20, after }, { dataSources }) => {
-      let allSessions = await dataSources.sessionAPI.getAllSessions();
+      const allSessions = await dataSources.sessionAPI.getAllSessions();
 
       const sessions = paginateResults({
         after,
