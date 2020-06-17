@@ -6,12 +6,14 @@ import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
 import AccountAPI from './datasources/account';
+import EventAPI from './datasources/event';
 import SessionAPI from './datasources/session';
 
 // const internalEngineDemo = require('./engine-demo');
 // set up any dataSources our resolvers need
 const dataSources = () => ({
   accountAPI: new AccountAPI(),
+  eventAPI: new EventAPI(),
   sessionAPI: new SessionAPI()
 });
 
@@ -41,5 +43,7 @@ module.exports = {
   resolvers,
   ApolloServer,
   AccountAPI,
+  EventAPI,
+  SessionAPI,
   server,
 };
