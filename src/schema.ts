@@ -17,6 +17,12 @@ export const typeDefs = gql`
     # account_id is the public key ss58 encoded to the appropriate network
     account(account_id: String!): Account
     accountsById(account_ids: [String]!): [Account]
+    events(
+      pageSize: Int
+      after: String
+    ): EventsConnection!
+    accountEvents(account_id: String!, pageSize: Int
+      after: String): EventsConnection!
     nominators(
       pageSize: Int
       after: String
@@ -82,6 +88,39 @@ export const typeDefs = gql`
     cursor: String!
     hasMore: Boolean!
     accounts: [Account]
+  }
+
+  type EventAttributeAttribute {
+    type: String,
+    value: Int,
+    valueRaw: String
+  }
+
+  type EventAttributes {
+    block_id: Int,
+    event_idx: Int,
+    extrinsic_idx: Int,
+    type: String,
+    spec_version_id: Int,
+    module_id: String,
+    event_id: String,
+    system: Int,
+    module: Int,
+    phase: Int,
+    attributes: [EventAttributeAttribute],
+    codec_error: Boolean
+  }
+
+  type Event {
+    attributes: EventAttributes
+    id: String
+    type: String
+  }
+
+  type EventsConnection {
+    cursor: String!
+    hasMore: Boolean!
+    events: [Event]
   }
 
   type SessionAttributes {
